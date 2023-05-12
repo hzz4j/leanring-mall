@@ -44,14 +44,18 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         String authHeader = request.getHeader(this.tokenHeader);
         if (authHeader != null && authHeader.startsWith(this.tokenHead)) {
             String authToken = authHeader.substring(this.tokenHead.length());// The part after "Bearer "
+            // jwt从token中获取用户名
             String username = jwtTokenUtil.getUserNameFromToken(authToken);
             LOGGER.debug("checking username:{}", username);
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                // 从数据库中获取用户信息(并且查询了用户的权限)
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
                 if (jwtTokenUtil.validateToken(authToken, userDetails)) {
+                    // 将用户权限转化为Spring Security的权限SimpleGrantedAuthority
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     LOGGER.debug("authenticated user:{}", username);
+                    // 将用户权限写入本次会话
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             }
