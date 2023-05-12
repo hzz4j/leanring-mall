@@ -17,30 +17,30 @@ spring:
       strict: false
       datasource:
         user:
-          url: jdbc:mysql://192.168.65.71:3306/tl_mall_user?characterEncoding=utf-8&useSSL=false
+          url: jdbc:mysql://192.168.135.130:3306/tl_mall_user?characterEncoding=utf-8&useSSL=false
           driver-class-name: com.mysql.cj.jdbc.Driver
-          username: tlmall
-          password: tlmall123
+          username: root
+          password: Root.123456
         goods:
-          url: jdbc:mysql://192.168.65.71:3306/tl_mall_goods?characterEncoding=utf-8&useSSL=false
+          url: jdbc:mysql://192.168.135.130:3306/tl_mall_goods?characterEncoding=utf-8&useSSL=false
           driver-class-name: com.mysql.cj.jdbc.Driver
-          username: tlmall
-          password: tlmall123
+          username: root
+          password: Root.123456
         promotion:
-          url: jdbc:mysql://192.168.65.71:3306/tl_mall_promotion?characterEncoding=utf-8&useSSL=false
+          url: jdbc:mysql://192.168.135.130:3306/tl_mall_promotion?characterEncoding=utf-8&useSSL=false
           driver-class-name: com.mysql.cj.jdbc.Driver
-          username: tlmall
-          password: tlmall123
+          username: root
+          password: Root.123456
         normal:
-          url: jdbc:mysql://192.168.65.71:3306/tl_mall_normal?characterEncoding=utf-8&useSSL=false
+          url: jdbc:mysql://192.168.135.130:3306/tl_mall_normal?characterEncoding=utf-8&useSSL=false
           driver-class-name: com.mysql.cj.jdbc.Driver
-          username: tlmall
-          password: tlmall123
+          username: root
+          password: Root.123456
         order:
-          url: jdbc:mysql://192.168.65.223:3306/tl_mall_order?characterEncoding=utf-8&useSSL=false
+          url: jdbc:mysql://192.168.135.130:3306/tl_mall_order?characterEncoding=utf-8&useSSL=false
           driver-class-name: com.mysql.cj.jdbc.Driver
-          username: tlmall
-          password: tlmall123
+          username: root
+          password: Root.123456
 #    url: jdbc:mysql://192.168.65.71:3306/tl_mall_user?characterEncoding=utf-8&useSSL=false
 #    username: tlmall
 #    password: tlmall123
