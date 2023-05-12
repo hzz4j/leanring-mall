@@ -99,5 +99,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //密码加密方式
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         System.out.println(bCryptPasswordEncoder.encode("test"));
+        System.out.println(bCryptPasswordEncoder.encode("macro123"));
+
+        //密码校验
+        String a = bCryptPasswordEncoder.encode("macro123");
+        String b = "$2a$10$HIukCOoyY2lk9FP8YSxWNuxPJIfXpORkOfpEP61yHiaM34m6TcMh6";
+        System.out.println(a.equals(b));
     }
 }

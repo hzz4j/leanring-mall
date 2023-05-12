@@ -91,7 +91,7 @@ CREATE TABLE `ums_admin`  (
 -- Records of ums_admin
 -- ----------------------------
 INSERT INTO `ums_admin` VALUES (1, 'test', '$2a$10$zUnskPAYscI1P4qQYICN.OvFU63eELVwqegx/thOqkxN2shB5KDEy', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20180607/timg.jpg', NULL, '测试账号', NULL, '2018-09-29 13:55:30', '2018-09-29 13:55:39', 1, '2022-06-29 12:59:10.576018', NULL);
-INSERT INTO `ums_admin` VALUES (3, 'admin', '$2a$10$HIukCOoyY2lk9FP8YSxWNuxPJIfXpORkOfpEP61yHiaM34m6TcMh6', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/170157_yIl3_1767531.jpg', 'admin@163.com', '系统管理员', '系统管理员', '2018-10-08 13:32:47', '2019-03-20 15:38:50', 1, '2022-06-29 12:59:10.802486', NULL);
+INSERT INTO `ums_admin` VALUES (3, 'admin', '$2a$10$.56bob6X4Sd8djMmv5a1huUQWiV06hFrzD.A9bKBDjyHW3qYS2h1m', 'http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/images/20190129/170157_yIl3_1767531.jpg', 'admin@163.com', '系统管理员', '系统管理员', '2018-10-08 13:32:47', '2019-03-20 15:38:50', 1, '2022-06-29 12:59:10.802486', NULL);
 
 -- ----------------------------
 -- Table structure for ums_admin_login_log
