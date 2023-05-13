@@ -27,3 +27,4 @@ http://localhost:8081/swagger-ui.html
 ```
 
 由于我们的接口进行了权限认证，在调用接口的时候需要传入token，swagger进行了token的`Api key authorization`的设置。我们可以通过登录后将token设置进去。
+

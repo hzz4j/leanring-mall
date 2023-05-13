@@ -1,5 +1,6 @@
 package com.tuling.tulingmall.service;
 
+import com.baomidou.dynamic.datasource.annotation.DSTransactional;
 import com.tuling.tulingmall.dto.PmsProductParam;
 import com.tuling.tulingmall.dto.PmsProductQueryParam;
 import com.tuling.tulingmall.dto.PmsProductResult;
@@ -29,7 +30,8 @@ public interface PmsProductService {
     /**
      * 更新商品
      */
-    @Transactional
+//    @Transactional
+    @DSTransactional
     int update(Long id, PmsProductParam productParam);
 
     /**
