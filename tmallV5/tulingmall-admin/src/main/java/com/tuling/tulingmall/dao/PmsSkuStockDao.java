@@ -3,6 +3,7 @@ package com.tuling.tulingmall.dao;
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.tuling.tulingmall.model.PmsSkuStock;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * Created on 2018/4/26.
  */
 @DS("goods")
+@Repository
 public interface PmsSkuStockDao {
     /**
      * 批量插入操作

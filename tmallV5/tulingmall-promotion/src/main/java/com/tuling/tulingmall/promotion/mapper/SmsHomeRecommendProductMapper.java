@@ -3,9 +3,11 @@ package com.tuling.tulingmall.promotion.mapper;
 import com.tuling.tulingmall.promotion.model.SmsHomeRecommendProduct;
 import com.tuling.tulingmall.promotion.model.SmsHomeRecommendProductExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface SmsHomeRecommendProductMapper {
     long countByExample(SmsHomeRecommendProductExample example);
 

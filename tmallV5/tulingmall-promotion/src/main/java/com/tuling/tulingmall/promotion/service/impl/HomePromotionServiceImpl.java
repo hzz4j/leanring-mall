@@ -161,23 +161,29 @@ public class HomePromotionServiceImpl implements HomePromotionService {
         final String recProductKey = promotionRedisKey.getRecProductKey();
         List<PmsProduct> recommendProducts = redisOpsExtUtil.getListAll(recProductKey, PmsProduct.class);
         if(CollectionUtils.isEmpty(recommendProducts)){
+            // 分布式锁串行化，只让一个线程去加载缓存
             redisDistrLock.lock(promotionRedisKey.getDlRecProductKey(),promotionRedisKey.getDlTimeout());
-            try {
-                PageHelper.startPage(0,ConstantPromotion.HOME_RECOMMEND_PAGESIZE,"sort desc");
-                SmsHomeRecommendProductExample example2 = new SmsHomeRecommendProductExample();
-                example2.or().andRecommendStatusEqualTo(ConstantPromotion.HOME_PRODUCT_RECOMMEND_YES);
-                List<Long> recommendProductIds = smsHomeRecommendProductMapper.selectProductIdByExample(example2);
-                recommendProducts = pmsProductClientApi.getProductBatch(recommendProductIds);
-                redisOpsExtUtil.putListAllRight(recProductKey,recommendProducts);
-            } finally {
-                redisDistrLock.unlock(promotionRedisKey.getDlRecProductKey());
+            // 在从缓存中获取
+            recommendProducts = redisOpsExtUtil.getListAll(recProductKey, PmsProduct.class);
+            if(CollectionUtils.isEmpty(recommendProducts)){
+                try {
+                    PageHelper.startPage(0,ConstantPromotion.HOME_RECOMMEND_PAGESIZE,"sort desc");
+                    SmsHomeRecommendProductExample example2 = new SmsHomeRecommendProductExample();
+                    example2.or().andRecommendStatusEqualTo(ConstantPromotion.HOME_PRODUCT_RECOMMEND_YES);
+                    List<Long> recommendProductIds = smsHomeRecommendProductMapper.selectProductIdByExample(example2);
+                    recommendProducts = pmsProductClientApi.getProductBatch(recommendProductIds);
+                    log.info("人气推荐商品信息存入缓存，键{}" ,recProductKey);
+                    redisOpsExtUtil.putListAllRight(recProductKey,recommendProducts);
+                } finally {
+                    redisDistrLock.unlock(promotionRedisKey.getDlRecProductKey());
+                }
+            }else{
+                log.info("人气推荐商品信息已在缓存，键{}" ,recProductKey);
             }
-            log.info("人气推荐商品信息存入缓存，键{}" ,recProductKey);
-            result.setHotProductList(recommendProducts);
         }else{
             log.info("人气推荐商品信息已在缓存，键{}" ,recProductKey);
-            result.setHotProductList(recommendProducts);
         }
+        result.setHotProductList(recommendProducts);
     }
 
     /*获取新品推荐产品*/
